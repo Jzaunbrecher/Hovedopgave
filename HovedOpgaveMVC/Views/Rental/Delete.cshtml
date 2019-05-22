@@ -1,0 +1,43 @@
+﻿@model HovedOpgaveMVC.Models.RentalItem
+@{
+    ViewBag.Title = "Rental";
+}
+
+<h2>Slet</h2>
+<h3>Er du sikker på at du vil slette dette?</h3>
+<div>
+    <h4>Ting til Udlejning</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Billede)
+        </dt>
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Billede)" alt="Intet Billede">
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tekst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tekst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pris)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" value="@Html.DisplayFor(model => model.ID)" />
+        <input type="submit" value="Delete" /> |
+        <input type="button" value="Tilbage" onclick="location.href='@Url.Action("Index", "Rental")'" />
+    </form>
+</div>

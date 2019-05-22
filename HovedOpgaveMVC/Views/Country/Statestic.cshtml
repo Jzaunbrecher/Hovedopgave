@@ -1,0 +1,91 @@
+﻿@model HovedOpgaveMVC.Models.CountryViewModel
+@{
+    ViewBag.Title = "Statestic";
+}
+
+<h2>Statestic</h2>
+<h3>Statestic over Hvormange fra de enkelte lande som har besøgt hjemmesiden</h3>
+<div class="row">
+    <div class="col-sm-6">
+        <p>Oversigt måned for måned</p>
+        <canvas id="chartDates" width="400" height="400"></canvas>
+    </div>
+    <div class="col-sm-6">
+        <p>Oversigt over lande</p>
+        <canvas id="chartCountries" width="400" height="400"></canvas>
+    </div>
+</div>
+<script>
+    var Dates = [];
+    var DatesNumbers = [];
+    var Countries = [];
+    var CountriesNumbers = [];
+
+@foreach (var dates in Model.Dates)
+{
+@:Dates.push("@dates");
+}
+@foreach (var datesNumbers in Model.DatesNumbers)
+{
+@:DatesNumbers.push("@datesNumbers");
+}
+@foreach (var countries in Model.Countries)
+{
+@:Countries.push("@countries");
+}
+@foreach (var countriesNumbers in Model.CountriesNumbers)
+{
+@:CountriesNumbers.push("@countriesNumbers");
+}
+
+
+    chartDates();
+    chartCountries();
+
+    function chartDates() {
+        var ctx1 = document.getElementById("chartDates");
+        var myChart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: Dates,
+                datasets: [{
+                    label: '# of Visits',
+                    data: DatesNumbers,
+                    backgroundColor: "#0b6623"
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    function chartCountries() {
+        var ctx2 = document.getElementById("chartCountries");
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: Countries,
+                datasets: [{
+                    label: '# of Visits',
+                    data: CountriesNumbers,
+                    backgroundColor: "#0b6623"
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>

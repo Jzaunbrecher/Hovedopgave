@@ -1,0 +1,61 @@
+﻿body {
+    background-image: url("/Images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+/*Colors*/
+.ColorLawngreen {
+    background-color: lawngreen;
+}
+
+.ColorGrainyellow {
+    background-color: #FADA5E;
+}
+
+.ColorRed {
+    background-color: red;
+}
+
+.ColorBrown {
+    background-color: saddlebrown;
+}
+.ColorBlack {
+    background-color: black;
+}
+
+/*Buttum line*/
+hr {
+    background-color: red;
+}
+
+/*Image*/
+img {
+    height: 200px;
+    width: 200px;
+}
+
+/*Table*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr, th, td {
+    border: 2px solid red;
+    text-align: left;
+    padding: 8px;
+    background-color: #FADA5E;
+}
+
+tr:nth-child(even) {
+    background-color: saddlebrown;
+}
+
+/*
+Gress grøn #7cfc00
+Corn gul #FADA5E
+økologi rød
+brune træstammer
+*/

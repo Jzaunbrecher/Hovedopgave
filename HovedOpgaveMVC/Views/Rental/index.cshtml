@@ -1,0 +1,74 @@
+﻿@model HovedOpgaveMVC.Models.RentalViewModels
+@{
+    ViewBag.Title = "Udlejning";
+}
+
+<h2>Udlejning</h2>
+<h4>Ting til Udlejning</h4>
+<hr />
+
+@if (User.IsInRole("Admin"))
+{
+    <form action="#">
+        <input type="button" value="Opret" onclick="location.href='@Url.Action("Create", "Rental")'" />
+    </form>
+}
+
+@{
+    if (!@Model.RentalItems.Any())
+    {
+        <p>Ingen Ting til Udlejning</p>
+    }
+    else
+    {
+        <table class="table">
+            @*<thead>*@
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RentalItems[0].Billede)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RentalItems[0].Tekst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RentalItems[0].Pris)
+                    </th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            @*</thead>*@
+            @*<tbody>*@
+                @foreach (var item in Model.RentalItems)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Html.DisplayFor(modelItem => item.Billede)" alt="Intet Billede">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tekst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pris) kr
+                        </td>
+                        <td>
+                            @{
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <button onclick="window.location.href='/Rental/Edit/' + @Html.DisplayFor(modelItem => item.ID)">Rediger</button>
+                                    <br />
+                                    <button onclick="window.location.href='/Rental/Delete/' + @Html.DisplayFor(modelItem => item.ID)">Slet</button>
+                                }
+                                else
+                                {
+                                    <button onclick="window.location.href='/Rental/Rent/' + @Html.DisplayFor(modelItem => item.ID)">Lej</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            @*</tbody>*@
+        </table>
+    }
+}

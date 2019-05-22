@@ -1,0 +1,44 @@
+﻿@model HovedOpgaveMVC.Models.RentalItem
+@{
+    ViewBag.Title = "Rental";
+}
+
+<h2>Lej</h2>
+<h3>Er du sikker på at du vil Leje dette?</h3>
+<div>
+    <h4>Ting til Udlejning</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Billede)
+        </dt>
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Billede)" alt="Intet Billede">
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tekst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tekst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pris) kr
+        </dd>
+    </dl>
+    <form action="https://formspree.io/Madsen.Jens@Yahoo.dk" method="POST">
+        @*<form action="https://formspree.io/jzaunbrecher53@gmail.com" method="POST">*@
+        <input type="text" name="name" placeholder="Dit Navn" required> <br />
+        <input type="email" name="_replyto" placeholder="Din Email" required> <br />
+
+        <input type="hidden" name="Emne" value="Leje af @Html.DisplayFor(model => model.Tekst)" />
+        <input type="hidden" name="ID" value="@Html.DisplayFor(model => model.ID)" />
+        <input type="hidden" name="Billede" value="@Html.DisplayFor(model => model.Billede)" />
+        <input type="hidden" name="Tekst" value="@Html.DisplayFor(model => model.Tekst)" />
+        <input type="hidden" name="Pris" value="@Html.DisplayFor(model => model.Pris) kr" />
+        <input type="submit" name="Send" value="Send">
+    </form>
+    <input type="button" value="Tilbage" onclick="location.href='@Url.Action("Index", "Rental")'" />
+</div>

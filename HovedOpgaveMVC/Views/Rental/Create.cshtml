@@ -1,0 +1,32 @@
+﻿@model HovedOpgaveMVC.Models.RentalItem
+@{
+    ViewBag.Title = "Rental";
+}
+
+<h2>Opret</h2>
+<h4>Ting til Udlejning</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="Create" method="post">
+            <div class="form-group">
+                <label>Billede: </label> <br />
+                <input type="text" name="Billede" placeholder="URL til billedets lokation" />
+            </div>
+            <div class="form-group">
+                <label>Tekst: </label> <br />
+                <input type="text" name="Tekst" placeholder="Tekst/Beskrivelse" />
+            </div>
+            <div class="form-group">
+                <label>Pris: </label> <br />
+                <input type="text" name="Pris" pattern="\d+(\.\d{2})?" placeholder="1.00" />
+            </div>
+
+            <input type="submit" value="Opret" />
+        </form>
+    </div>
+</div> <br />
+<div>
+    <input type="button" value="Tilbage" onclick="location.href='@Url.Action("Index", "Rental")'" />
+</div>
